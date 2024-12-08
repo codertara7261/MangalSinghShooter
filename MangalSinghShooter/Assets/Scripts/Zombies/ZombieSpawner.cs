@@ -5,15 +5,21 @@ using UnityEngine;
 public class ZombieSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject zombiePrefab;
-    [SerializeField] private float spawnInterval;
-    [SerializeField] private float spawnDistance;
+    [SerializeField] private float initialSpawnInterval = 2f;
+    [SerializeField] private float minimumSpawnInterval = 0.5f;
+    [SerializeField] private float difficultyIncreaseRate = 0.1f;
+    [SerializeField] private float spawnDistance = 10f;
 
     private Transform player;
+
+    private float currentSpawnInterval;
 
     private const string PLAYER = "Player";
 
     private void Start() {
         player = GameObject.FindWithTag(PLAYER).transform;
+
+        currentSpawnInterval = initialSpawnInterval;
 
         StartCoroutine(SpawnZombies());
     }
@@ -21,7 +27,10 @@ public class ZombieSpawner : MonoBehaviour
     private IEnumerator SpawnZombies() {
         while (true) {
             SpawnZombie();
-            yield return new WaitForSeconds(spawnInterval);
+
+            yield return new WaitForSeconds(currentSpawnInterval);
+
+            currentSpawnInterval = Mathf.Max(currentSpawnInterval - difficultyIncreaseRate, minimumSpawnInterval);
         }
     }
 

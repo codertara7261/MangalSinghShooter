@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ZombieAI : MonoBehaviour
 {
-    [SerializeField] private float zombieSpeed = 2f;
+    [SerializeField] private float initialZombieSpeed = 2f;
+    [SerializeField] private float speedIncreaseRate = 0.1f;
+
+    private float currentZombieSpeed;
 
     private Transform player;
 
@@ -12,12 +15,14 @@ public class ZombieAI : MonoBehaviour
 
     private void Start() {
         player = GameObject.FindWithTag(PLAYER).transform;
+
+        currentZombieSpeed = initialZombieSpeed + (GameManager.Instance.GetScore() * speedIncreaseRate);
     }
 
     private void Update() {
         if (player != null) {
             Vector3 direction = (player.position - transform.position).normalized;
-            transform.position += direction * zombieSpeed * Time.deltaTime;
+            transform.position += direction * currentZombieSpeed * Time.deltaTime;
         }
     }
 
