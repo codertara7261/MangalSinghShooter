@@ -8,8 +8,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag(ZOMBIE)) {
+
             Destroy(collision.gameObject);
+
             Destroy(gameObject);
+
+            GameManager.Instance.AddScore(1);
         }
     }
 }
