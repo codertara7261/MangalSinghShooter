@@ -20,4 +20,15 @@ public class ZombieAI : MonoBehaviour
             transform.position += direction * zombieSpeed * Time.deltaTime;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.CompareTag(PLAYER)) {
+            PlayerHealth playerhealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if(playerhealth != null) {
+                playerhealth.TakeDamage(1);
+            }
+
+            Destroy(gameObject);
+        }
+    }
 }
