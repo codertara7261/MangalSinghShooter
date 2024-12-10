@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PowerUps;
 
 public class PlayerPowerUp : MonoBehaviour
 {
@@ -14,28 +15,28 @@ public class PlayerPowerUp : MonoBehaviour
         playerShooting = GetComponent<PlayerShooting>();
     }
 
-    public void ActivatePowerUp(string powerUpType, float duration) {
+    public void ActivatePowerUp(PowerUpType powerUpType, float duration) {
         switch (powerUpType) {
-            case "Speed":
-                StartCoroutine(SpeedBoost(duration));
+            case PowerUpType.Speed:
+                StartCoroutine(ActivateSpeedBoost(duration));
                 break;
-            case "MachineGun":
-                StartCoroutine(MachineGun(duration));
+            case PowerUpType.MachineGun:
+                StartCoroutine(ActivateMachineGun(duration));
                 break;
-            case "Health":
+            case PowerUpType.Health:
                 RestoreHealth();
                 break;
         }
     }
 
-    private IEnumerator MachineGun(float duration) {
+    private IEnumerator ActivateMachineGun(float duration) {
         float originalFireRate = playerShooting.FireRate;
         playerShooting.FireRate /= 2;
         yield return new WaitForSeconds(duration);
         playerShooting.FireRate = originalFireRate;   
     }
 
-    private IEnumerator SpeedBoost(float duration) {
+    private IEnumerator ActivateSpeedBoost(float duration) {
         playerMovements.MoveSpeed *= 2;
         yield return new WaitForSeconds(duration);
         playerMovements.MoveSpeed /= 2;

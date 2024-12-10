@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PowerUps;
 
 public class PowerUp : MonoBehaviour
 {
-    [SerializeField] private string powerUpType;
+    [SerializeField] private PowerUpType powerUpType;
     [SerializeField] private float duration = 5f;
 
     private const string PLAYER = "Player";

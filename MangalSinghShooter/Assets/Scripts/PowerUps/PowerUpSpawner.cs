@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject powerUpPrefab;
+    [SerializeField] GameObject[] powerUpPrefabs;
     [SerializeField] float powerUpSpawnChance = 0.2f;
     [SerializeField] float maxPowerUpOnScreen = 1f;
     [SerializeField] float spawnInterval = 5f;
@@ -14,10 +14,11 @@ public class PowerUpSpawner : MonoBehaviour
 
     private int randomXSpawn;
     private int randomYSpawn;
+    private int randomIndex;
     private Vector2 powerUpPosition;
 
     private void Start() {
-        if(powerUpPrefab != null) {
+        if(powerUpPrefabs != null) {
             StartCoroutine(SpawnPowerUp());
             Debug.Log("StartCoroutine working");
         }
@@ -31,7 +32,8 @@ public class PowerUpSpawner : MonoBehaviour
             powerUpPosition = new Vector2(randomXSpawn, randomYSpawn);
 
             if (Random.value < powerUpSpawnChance && currentPowerUps <= maxPowerUpOnScreen) {
-                Instantiate(powerUpPrefab, powerUpPosition, Quaternion.identity);
+                randomIndex = Random.Range(0, powerUpPrefabs.Length);
+                Instantiate(powerUpPrefabs[randomIndex], powerUpPosition, Quaternion.identity);
                 currentPowerUps++;
                 Debug.Log("PowerUpsSpawning");
             }

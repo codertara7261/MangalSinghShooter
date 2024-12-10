@@ -1045,10 +1045,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6733c66a84f7e8842a98d68ec226f6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpPrefab: {fileID: 7971534025773466849, guid: 2b85ea2d4e23fc64cb67eaf65e2601f0, type: 3}
-  powerUpSpawnChance: 0.2
+  powerUpPrefabs:
+  - {fileID: 3126867957102079127, guid: e3335a1106eb15d4abf5a731db307002, type: 3}
+  - {fileID: 6717986204769445043, guid: c135075c9134fe5428b879b4e483661d, type: 3}
+  - {fileID: 6234015748559730224, guid: 194caa7a530536346b2143c228ab2669, type: 3}
+  powerUpSpawnChance: 1
   maxPowerUpOnScreen: 2
-  spawnInterval: 5
+  spawnInterval: 1
 --- !u!1 &1274326475
 GameObject:
   m_ObjectHideFlags: 0
