@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5027228988560648310
+--- !u!1001 &7774063844256587410
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 193f48f223d2cd44e98a156f47650e49, type: 3}
+    - target: {fileID: 1768882208464581502, guid: 2b85ea2d4e23fc64cb67eaf65e2601f0, type: 3}
+      propertyPath: powerUpType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2008104240324379201, guid: 2b85ea2d4e23fc64cb67eaf65e2601f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -67,10 +71,6 @@ PrefabInstance:
     - target: {fileID: 7971534025773466849, guid: 2b85ea2d4e23fc64cb67eaf65e2601f0, type: 3}
       propertyPath: m_Name
       value: SpeedPowerUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8762334842237784471, guid: 2b85ea2d4e23fc64cb67eaf65e2601f0, type: 3}
-      propertyPath: powerUpType
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

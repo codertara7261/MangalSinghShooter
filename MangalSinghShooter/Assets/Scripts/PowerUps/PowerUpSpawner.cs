@@ -10,17 +10,16 @@ public class PowerUpSpawner : MonoBehaviour
     [SerializeField] float maxPowerUpOnScreen = 1f;
     [SerializeField] float spawnInterval = 5f;
 
-    private int currentPowerUps = 0;
+    private int currentPowerUps;
 
     private int randomXSpawn;
     private int randomYSpawn;
-    private int randomIndex;
     private Vector2 powerUpPosition;
 
     private void Start() {
+        currentPowerUps = 0;
         if(powerUpPrefabs != null) {
             StartCoroutine(SpawnPowerUp());
-            Debug.Log("StartCoroutine working");
         }
     }
 
@@ -32,10 +31,9 @@ public class PowerUpSpawner : MonoBehaviour
             powerUpPosition = new Vector2(randomXSpawn, randomYSpawn);
 
             if (Random.value < powerUpSpawnChance && currentPowerUps <= maxPowerUpOnScreen) {
-                randomIndex = Random.Range(0, powerUpPrefabs.Length);
+                int randomIndex = Random.Range(0, powerUpPrefabs.Length);
                 Instantiate(powerUpPrefabs[randomIndex], powerUpPosition, Quaternion.identity);
                 currentPowerUps++;
-                Debug.Log("PowerUpsSpawning");
             }
 
             yield return new WaitForSeconds(spawnInterval);

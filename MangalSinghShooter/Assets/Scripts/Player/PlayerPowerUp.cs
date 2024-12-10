@@ -33,13 +33,13 @@ public class PlayerPowerUp : MonoBehaviour
         float originalFireRate = playerShooting.FireRate;
         playerShooting.FireRate /= 2;
         yield return new WaitForSeconds(duration);
-        playerShooting.FireRate = originalFireRate;   
+        playerShooting.FireRate = originalFireRate;
     }
 
     private IEnumerator ActivateSpeedBoost(float duration) {
-        playerMovements.MoveSpeed *= 2;
+        playerMovements.MoveSpeed *= 2f;
         yield return new WaitForSeconds(duration);
-        playerMovements.MoveSpeed /= 2;
+        playerMovements.MoveSpeed /= 2f;
     }
 
     private void RestoreHealth() {

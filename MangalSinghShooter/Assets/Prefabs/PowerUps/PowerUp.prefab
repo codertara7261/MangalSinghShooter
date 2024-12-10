@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5486007488227313284}
   - component: {fileID: 570248561750728982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PowerUp_Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 2008104240324379201}
   - component: {fileID: 2785624920935252707}
   - component: {fileID: 4262445509889281332}
-  - component: {fileID: 8762334842237784471}
-  m_Layer: 0
+  - component: {fileID: 1768882208464581502}
+  m_Layer: 6
   m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8762334842237784471
+--- !u!114 &1768882208464581502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,5 +203,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc30323a79cb50418ce78ea26f1118f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: Health
+  powerUpType: 0
   duration: 5

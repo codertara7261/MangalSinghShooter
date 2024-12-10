@@ -1046,9 +1046,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpPrefabs:
-  - {fileID: 3126867957102079127, guid: e3335a1106eb15d4abf5a731db307002, type: 3}
-  - {fileID: 6717986204769445043, guid: c135075c9134fe5428b879b4e483661d, type: 3}
-  - {fileID: 6234015748559730224, guid: 194caa7a530536346b2143c228ab2669, type: 3}
+  - {fileID: 7808563958885460329, guid: c135075c9134fe5428b879b4e483661d, type: 3}
+  - {fileID: 379311817198262899, guid: e3335a1106eb15d4abf5a731db307002, type: 3}
+  - {fileID: 2239378276690646964, guid: 194caa7a530536346b2143c228ab2669, type: 3}
   powerUpSpawnChance: 1
   maxPowerUpOnScreen: 2
   spawnInterval: 1
