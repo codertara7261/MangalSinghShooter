@@ -27,9 +27,9 @@ public class ZombieAI : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.CompareTag(PLAYER)) {
+        if (collision.gameObject.CompareTag(PLAYER)) {
             PlayerHealth playerhealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if(playerhealth != null) {
+            if (playerhealth != null) {
                 playerhealth.TakeDamage(1);
             }
 
