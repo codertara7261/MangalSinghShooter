@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,15 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
 
+    public int CurrentHealth => currentHealth;
+
+    public int MaxHealth {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
+
+    public event Action<int> HealthChanged;
+
     private const string GAMEOVERCANVAS = "GameOverCanvas";
 
     GameObject gameOverCanvas;
@@ -14,19 +24,25 @@ public class PlayerHealth : MonoBehaviour
     private void Awake() {
         gameOverCanvas = GameObject.Find(GAMEOVERCANVAS);
 
+        currentHealth = maxHealth;
+
         if (gameOverCanvas != null) {
             gameOverCanvas.SetActive(false);
         }
     }
 
-    private void Start() {
-        currentHealth = maxHealth;
-    }
     public void TakeDamage(int damage) {
         currentHealth -= damage;
+
+        if (currentHealth < 0) {
+            currentHealth = 0;
+        }
+
         if (currentHealth <= 0) {
             Die();
         }
+
+        HealthChanged?.Invoke(currentHealth);
     }
 
     private void Die() { 
@@ -49,7 +65,6 @@ public class PlayerHealth : MonoBehaviour
 
         Time.timeScale = 0;
     }
-
 
     public int GetHealth() {
         return currentHealth;
