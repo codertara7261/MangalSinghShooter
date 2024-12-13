@@ -16,19 +16,10 @@ public class PlayerHealth : MonoBehaviour {
 
     public event Action<int> HealthChanged;
 
-    private const string GAMEOVERCANVAS = "GameOverCanvas";
-
-    private GameObject gameOverCanvas;
-
     private void Awake() {
-        gameOverCanvas = GameObject.Find(GAMEOVERCANVAS);
 
         currentHealth = maxHealth;
         HealthChanged?.Invoke(currentHealth); // Trigger UI update on initialization
-
-        if (gameOverCanvas != null) {
-            gameOverCanvas.SetActive(false);
-        }
     }
 
     public void TakeDamage(int damage) {
@@ -42,22 +33,6 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     private void Die() {
-        if (gameOverCanvas != null) {
-            gameOverCanvas.SetActive(true);
-
-            Animator animator = gameOverCanvas.GetComponent<Animator>();
-            if (animator != null) {
-                animator.Play("GameOverMenuSildeDown");
-            }
-        }
-
-        StartCoroutine(PauseGameAfterAnimation());
-
-        Debug.Log("You Lose. Player died.");
-    }
-
-    private IEnumerator PauseGameAfterAnimation() {
-        yield return new WaitForSecondsRealtime(1f);
-        Time.timeScale = 0;
+        GameManager.Instance.ToggleGameOver();
     }
 }
