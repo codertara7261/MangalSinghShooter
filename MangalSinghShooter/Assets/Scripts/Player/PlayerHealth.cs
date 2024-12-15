@@ -24,9 +24,10 @@ public class PlayerHealth : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth); // Simplified clamping
-
+        Debug.Log(currentHealth);
         if (currentHealth <= 0) {
             Die();
+            Debug.Log("Die method called");
         }
 
         HealthChanged?.Invoke(currentHealth);

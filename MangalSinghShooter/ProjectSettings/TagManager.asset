@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Zombie
+  - HUDCanvas
+  - GameOverMenuCanvas
+  - PauseMenuCanvas
   layers:
   - Default
   - TransparentFX
