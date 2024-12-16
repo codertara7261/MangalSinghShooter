@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Hands
+    m_Hash: 669981948
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: LeftHand
+      m_Hash: 913699692
+      m_Sprite: {fileID: 21300000, guid: abaede85ca90af741850900be78ceb82, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: abaede85ca90af741850900be78ceb82, type: 3}
+    - m_Name: RightHand
+      m_Hash: 905530672
+      m_Sprite: {fileID: 21300000, guid: 7adf73b1526065e4faf31ea807edca04, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 7adf73b1526065e4faf31ea807edca04, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 2
+  - m_Name: Heads
+    m_Hash: 600951958
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: PlayerHead
+      m_Hash: 953549483
+      m_Sprite: {fileID: 21300000, guid: 0d51dd5ea6d66ae4b841f3d825e4a418, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 0d51dd5ea6d66ae4b841f3d825e4a418, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Weapons
+    m_Hash: 498303613
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Pistol
+      m_Hash: 628959629
+      m_Sprite: {fileID: 21300000, guid: 24f63a02064cfae4aa3bf2d17e6aa9ff, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 24f63a02064cfae4aa3bf2d17e6aa9ff, type: 3}
+    - m_Name: MachineGun
+      m_Hash: 763174525
+      m_Sprite: {fileID: 21300000, guid: d19779bc566370e4eb45a8fa86fa3d0b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: d19779bc566370e4eb45a8fa86fa3d0b, type: 3}
+    - m_Name: Blaster
+      m_Hash: 426732286
+      m_Sprite: {fileID: 21300000, guid: 5c0319ed2ff850f4f9ac64b597964f09, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 5c0319ed2ff850f4f9ac64b597964f09, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638699453134394100
+  m_Version: 1

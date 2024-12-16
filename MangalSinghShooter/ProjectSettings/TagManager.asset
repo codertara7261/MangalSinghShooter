@@ -8,6 +8,7 @@ TagManager:
   - HUDCanvas
   - GameOverMenuCanvas
   - PauseMenuCanvas
+  - LoadingScreenCanvas
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GroundTiles
+    uniqueID: 3201079351
+    locked: 0
+  - name: LevelBorder
+    uniqueID: 4289763241
+    locked: 0
+  - name: PowerUps
+    uniqueID: 3796273247
+    locked: 0
+  - name: Player
+    uniqueID: 2768084939
+    locked: 0
+  - name: Enemies
+    uniqueID: 732532199
     locked: 0
