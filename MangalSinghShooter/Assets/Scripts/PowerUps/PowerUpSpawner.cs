@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] powerUpPrefabs;
-    [SerializeField] float powerUpSpawnChance = 0.2f;
-    [SerializeField] float maxPowerUpOnScreen = 1f;
-    [SerializeField] float spawnInterval = 5f;
+    [SerializeField] private GameObject[] powerUpPrefabs;
+    [SerializeField] private float powerUpSpawnChance = 0.2f;
+    [SerializeField] private float maxPowerUpOnScreen = 1f;
+    [SerializeField] private float spawnInterval = 15f;
 
     private int currentPowerUps;
 

@@ -31,15 +31,22 @@ public class PlayerPowerUp : MonoBehaviour
 
     private IEnumerator ActivateMachineGun(float duration) {
         float originalFireRate = playerShooting.FireRate;
-        playerShooting.FireRate /= 2;
+        float boostedFireRate = Mathf.Min(originalFireRate / 2, 0.30f);
+
+        playerShooting.FireRate = boostedFireRate;
         yield return new WaitForSeconds(duration);
+
         playerShooting.FireRate = originalFireRate;
     }
 
     private IEnumerator ActivateSpeedBoost(float duration) {
-        playerMovements.MoveSpeed *= 2f;
+        float originalSpeed = playerMovements.MoveSpeed;
+        float boostedSpeed = Mathf.Min(originalSpeed * 2, 15f);
+
+        playerMovements.MoveSpeed = boostedSpeed;
         yield return new WaitForSeconds(duration);
-        playerMovements.MoveSpeed /= 2f;
+
+        playerMovements.MoveSpeed = originalSpeed;
     }
 
     private void RestoreHealth() {
