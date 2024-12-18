@@ -13,7 +13,13 @@ public class InputManager : MonoBehaviour
 
     private void Awake() {
         _playerInput = GetComponent<PlayerInput>();
+        if(_playerInput == null) {
+            Debug.LogError("PlayerInput Component not found on GameObject");
+        }
         _moveAction = _playerInput.actions[MoveAction];
+        if(_moveAction == null) {
+            Debug.LogError($"MoveAction '{MoveAction}' not found");
+        }
     }
 
     private void Update() {

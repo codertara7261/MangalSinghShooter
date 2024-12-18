@@ -14,23 +14,24 @@ public class PlayerHealth : MonoBehaviour {
         set => maxHealth = value;
     }
 
-    public event Action<int> HealthChanged;
+    public event Action<int> OnHealthChanged;
 
     private void Awake() {
 
         currentHealth = maxHealth;
-        HealthChanged?.Invoke(currentHealth); // Trigger UI update on initialization
+        OnHealthChanged?.Invoke(currentHealth); // Trigger UI update on initialization
     }
 
     public void TakeDamage(int damage) {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth); // Simplified clamping
-        Debug.Log(currentHealth);
+
         if (currentHealth <= 0) {
             Die();
             Debug.Log("Die method called");
         }
 
-        HealthChanged?.Invoke(currentHealth);
+        OnHealthChanged?.Invoke(currentHealth);
+
     }
 
     private void Die() {

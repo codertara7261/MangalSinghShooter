@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float bulletSpeed = 10f;
+    
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 0.5f;
 
     private float nextFireTime = 0f;
+    private float bulletSpeed = 50f;
 
     public float FireRate {
         get { return fireRate; }

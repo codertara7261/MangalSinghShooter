@@ -23,6 +23,8 @@ public class ZombieAI : MonoBehaviour
         if (player != null) {
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * currentZombieSpeed * Time.deltaTime;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
     }
 
