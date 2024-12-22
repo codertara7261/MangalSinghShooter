@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -5,33 +6,58 @@ using UnityEngine;
 
 public class PowerUpSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] powerUpPrefabs;
-    [SerializeField] private float powerUpSpawnChance = 0.2f;
-    [SerializeField] private float maxPowerUpOnScreen = 1f;
-    [SerializeField] private float spawnInterval = 15f;
+    private const string PLAYER = "Player";
 
+    [SerializeField] private GameObject[] powerUpPrefabs;
+    [SerializeField] private float powerUpSpawnChance = 0.6f;
+    [SerializeField] private float maxPowerUpOnScreen = 5f;
+    [SerializeField] private float spawnInterval = 5f;
+
+    private float randomAngle;
+    private int randomDistanceFromPlayer;
     private int currentPowerUps;
 
-    private int randomXSpawn;
-    private int randomYSpawn;
+    private Transform playerTransform;
+
+    private Camera mainCamera;
+    private float camHeight;
+    private float camWidth;
+
+    private int randomX;
+    private int randomY;
     private Vector2 powerUpPosition;
+
+    private void Awake() {
+        playerTransform = GameObject.FindWithTag(PLAYER).transform;
+        mainCamera = Camera.main;
+    }
 
     private void Start() {
         currentPowerUps = 0;
         if(powerUpPrefabs != null) {
-            StartCoroutine(SpawnPowerUp());
+            StartCoroutine(NewPowerUpSpawner());
         }
+
+        camHeight = 2f * mainCamera.orthographicSize;
+        camWidth = camHeight * mainCamera.aspect;
     }
 
-    private IEnumerator SpawnPowerUp() {
+    private IEnumerator NewPowerUpSpawner() {
         while (true) {
 
-            randomXSpawn = Random.Range(-8, 8);
-            randomYSpawn = Random.Range(-4, 4);
-            powerUpPosition = new Vector2(randomXSpawn, randomYSpawn);
+            float minX = playerTransform.position.x - camWidth / 4;
+            float maxX = playerTransform.position.x + camWidth / 4;
 
-            if (Random.value < powerUpSpawnChance && currentPowerUps <= maxPowerUpOnScreen) {
-                int randomIndex = Random.Range(0, powerUpPrefabs.Length);
+            float minY = playerTransform.position.y - camHeight / 4;
+            float maxY = playerTransform.position.y + camHeight / 4;
+
+            Vector2 powerUpPosition = new Vector2(
+                UnityEngine.Random.Range(minX, maxX),
+                UnityEngine.Random.Range(minY, maxY)
+                );
+
+            if (UnityEngine.Random.value < powerUpSpawnChance && currentPowerUps <= maxPowerUpOnScreen) {
+                int randomIndex = UnityEngine.Random.Range(0, powerUpPrefabs.Length);
                 Instantiate(powerUpPrefabs[randomIndex], powerUpPosition, Quaternion.identity);
                 currentPowerUps++;
             }
@@ -40,7 +66,7 @@ public class PowerUpSpawner : MonoBehaviour
         }
     }
 
-    public void OnPowerUpCollected() {
+    public void PowerUpCollected() {
         currentPowerUps--;
     }
 }

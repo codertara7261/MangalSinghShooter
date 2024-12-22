@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PowerUps;
+using System;
 
 public class PowerUp : MonoBehaviour
 {
+    public static event Action<PowerUpType> OnPowerUpCollected;
+
     [SerializeField] private PowerUpType powerUpType;
     [SerializeField] private float duration = 5f;
 
@@ -18,8 +21,8 @@ public class PowerUp : MonoBehaviour
                 playerPowerUp.ActivatePowerUp(powerUpType, duration);
             }
 
-            FindObjectOfType<PowerUpSpawner>().OnPowerUpCollected();
-
+            FindObjectOfType<PowerUpSpawner>().PowerUpCollected();
+            OnPowerUpCollected?.Invoke(powerUpType);
             Destroy(gameObject);
         }
     }
