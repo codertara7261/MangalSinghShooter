@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ZombieAI : MonoBehaviour
 {
-    public static event Action OnZombieDie;
+    // public static event Action OnZombieDie;
 
     [SerializeField] private float initialZombieSpeed = 2f;
     [SerializeField] private float speedIncreaseRate = 0.1f;
@@ -37,7 +37,6 @@ public class ZombieAI : MonoBehaviour
             PlayerHealth playerhealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerhealth != null) {
                 playerhealth.TakeDamage(1);
-                OnZombieDie?.Invoke();
             }
 
             Destroy(gameObject);

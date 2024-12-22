@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
+    public static event Action OnZombieInstantiated;
+
     [SerializeField] private GameObject zombiePrefab;
     [SerializeField] private float initialSpawnInterval = 2f;
     [SerializeField] private float minimumSpawnInterval = 0.5f;
@@ -41,6 +44,8 @@ public class ZombieSpawner : MonoBehaviour
         Vector3 spawnPosition = GetSpawnPositionOutsideCamera();
 
         Instantiate(zombiePrefab, spawnPosition, Quaternion.identity);
+
+        OnZombieInstantiated?.Invoke();
     }
 
     private Vector3 GetSpawnPositionOutsideCamera() {
@@ -49,13 +54,13 @@ public class ZombieSpawner : MonoBehaviour
 
         float spawnOffset = spawnDistance;
 
-        int side = Random.Range(0, 4);
+        int side = UnityEngine.Random.Range(0, 4);
         Vector3 spawnPosition = Vector3.zero;
 
         switch(side) {
             case 0:
                 spawnPosition = new Vector3(
-                    Random.Range(player.position.x - camWidth / 2, player.position.x + camWidth / 2),
+                    UnityEngine.Random.Range(player.position.x - camWidth / 2, player.position.x + camWidth / 2),
                     player.position.y + camHeight / 2 + spawnOffset,
                     0f
                     );
@@ -63,7 +68,7 @@ public class ZombieSpawner : MonoBehaviour
 
             case 1:
                 spawnPosition = new Vector3(
-                    Random.Range(player.position.x - camWidth / 2, player.position.x + camWidth / 2),
+                    UnityEngine.Random.Range(player.position.x - camWidth / 2, player.position.x + camWidth / 2),
                     player.position.y - camHeight  / 2  - spawnOffset,
                     0f
                     );
@@ -72,7 +77,7 @@ public class ZombieSpawner : MonoBehaviour
             case 2:
                 spawnPosition = new Vector3(
                     player.position.x - camWidth / 2 - spawnOffset,
-                    Random.Range(player.position.y - camHeight / 2, player.position.y + camHeight / 2),
+                    UnityEngine.Random.Range(player.position.y - camHeight / 2, player.position.y + camHeight / 2),
                     0f
                     );
                 break;
@@ -80,7 +85,7 @@ public class ZombieSpawner : MonoBehaviour
             case 3:
                 spawnPosition = new Vector3(
                     player.position.x + camWidth / 2 + spawnOffset,
-                    Random.Range(player.position.y - camHeight / 2, player.position.y + camHeight / 2),
+                    UnityEngine.Random.Range(player.position.y - camHeight / 2, player.position.y + camHeight / 2),
                     0f
                     );
                 break;

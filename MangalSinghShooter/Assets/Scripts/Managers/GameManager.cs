@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour {
     private void Restart() {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        score = 0;
     }
 
     private void ResumeGame() {

@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance;
 
-    // private const string ZOMBIE = "Zombie";
+    private const string ZOMBIE = "Zombie";
     private const string PLAYER = "Player";
 
     private void Awake() {
@@ -34,22 +34,23 @@ public class SoundManager : MonoBehaviour
 
         bgmAudioSource = gameObject.GetComponent<AudioSource>();
         shootingAudioSource = GameObject.FindWithTag(PLAYER).AddComponent<AudioSource>();
-        // zombieAudioSource = GameObject.FindWithTag(ZOMBIE).AddComponent<AudioSource>();
+        
     }
 
     private void Start() {
         PlayBGM();
-        Debug.Log("Control is coming inside thhe SoundManager.cs");
     }
 
     private void OnEnable() {
         PlayerShooting.OnPlayerShoot += PlayPlayerShootSound;
-        ZombieAI.OnZombieDie += PlayZombieDieSound;
+        PlayerHealth.OnPlayerDie += StopBGM;
+        ZombieSpawner.OnZombieInstantiated += AssignZombieAudioSource;
     }
 
     private void OnDisable() {
         PlayerShooting.OnPlayerShoot -= PlayPlayerShootSound;
-        ZombieAI.OnZombieDie -= PlayZombieDieSound;
+        PlayerHealth.OnPlayerDie -= StopBGM;
+        ZombieSpawner.OnZombieInstantiated -= AssignZombieAudioSource;
     }
 
 
@@ -61,16 +62,24 @@ public class SoundManager : MonoBehaviour
             bgmAudioSource.playOnAwake = true;
             bgmAudioSource.volume = 1f;
             bgmAudioSource.Play();
-            Debug.LogError("BGM should be played");
+            bgmAudioSource.priority = 0;
         } else {
             Debug.LogError("BGM Sound is missing in Sound Manager");
         }
     }
 
-    private void PlayZombieDieSound() {
+    private void StopBGM() {
+        if(bgmSfx != null) {
+            bgmAudioSource.Stop();
+        }
+    }
+
+    public void PlayZombieDieSound() {
+        Debug.Log("zombie die sound");
         if(zombieDieSfx != null) {
-            zombieAudioSource.PlayOneShot(zombieDieSfx, 1.0f);
-            Debug.LogError("ZombieDieSfx should be played");
+
+            zombieAudioSource.priority = 129;
+            zombieAudioSource.PlayOneShot(zombieDieSfx, 0.5f);
         } else {
             Debug.LogError("ZombieDieSfx is missing");
         }
@@ -78,10 +87,14 @@ public class SoundManager : MonoBehaviour
 
     private void PlayPlayerShootSound() {
         if(shootingSfx != null) {
-            shootingAudioSource.PlayOneShot(shootingSfx, 0.6f);
-            Debug.LogError("ShootingSfx should be played");
+            shootingAudioSource.priority = 128;
+            shootingAudioSource.PlayOneShot(shootingSfx, 0.5f);
         } else {
             Debug.LogError("ShootingSfx is missing");
         }
+    }
+
+    private void AssignZombieAudioSource() {
+        zombieAudioSource = GameObject.FindWithTag(ZOMBIE).AddComponent<AudioSource>();
     }
 }

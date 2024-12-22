@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
+
+    public static event Action OnPlayerDie;
+
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
 
@@ -36,5 +39,6 @@ public class PlayerHealth : MonoBehaviour {
 
     private void Die() {
         GameManager.Instance.ToggleGameOver();
+        OnPlayerDie?.Invoke();
     }
 }
