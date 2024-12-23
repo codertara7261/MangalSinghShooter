@@ -32,13 +32,12 @@ public class SoundManager : MonoBehaviour
         if(Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            bgmAudioSource = gameObject.GetComponent<AudioSource>();
+            
         } else {
             Destroy(gameObject);
             return;
         }
-
-        bgmAudioSource = gameObject.GetComponent<AudioSource>();
-        shootingAudioSource = GameObject.FindWithTag(PLAYER).AddComponent<AudioSource>();
         
     }
 
@@ -51,6 +50,9 @@ public class SoundManager : MonoBehaviour
         PlayerHealth.OnPlayerDie += StopBGM;
         ZombieSpawner.OnZombieInstantiated += AssignZombieAudioSource;
         PowerUp.OnPowerUpCollected += PlayPowerUpCollected;
+        PlayerHealth.OnPlayerInitialized += AssignPlayerAudioSource;
+
+        shootingAudioSource = GameObject.FindWithTag(PLAYER).AddComponent<AudioSource>();
     }
 
     private void OnDisable() {
@@ -92,11 +94,10 @@ public class SoundManager : MonoBehaviour
     }
 
     private void PlayPlayerShootSound() {
-        if(shootingSfx != null) {
-            shootingAudioSource.priority = 128;
+        if(shootingSfx != null && shootingAudioSource != null) {
             shootingAudioSource.PlayOneShot(shootingSfx, 0.3f);
         } else {
-            Debug.LogError("ShootingSfx is missing");
+            Debug.LogError("ShootingSfx or ShootingAudioSource is missing");
         }
     }
 
@@ -119,5 +120,16 @@ public class SoundManager : MonoBehaviour
 
     private void AssignZombieAudioSource() {
         zombieAudioSource = GameObject.FindWithTag(ZOMBIE).AddComponent<AudioSource>();
+    }
+
+    private void AssignPlayerAudioSource(GameObject player) {
+        if(player != null) {
+            shootingAudioSource = player.GetComponent<AudioSource>();
+            if(shootingAudioSource == null) {
+                shootingAudioSource = player.AddComponent<AudioSource>();
+            }
+        } else {
+            Debug.LogError("Player GameObject is null in AssignPlayerAudioSource");
+        }
     }
 }

@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
 
     public static event Action OnPlayerDie;
+    public event Action<int> OnHealthChanged;
+    public static event Action<GameObject> OnPlayerInitialized;
 
     [SerializeField] private int maxHealth = 3;
     private int currentHealth;
@@ -17,10 +21,8 @@ public class PlayerHealth : MonoBehaviour {
         set => maxHealth = value;
     }
 
-    public event Action<int> OnHealthChanged;
-
     private void Awake() {
-
+        OnPlayerInitialized?.Invoke(gameObject);
         currentHealth = maxHealth;
         OnHealthChanged?.Invoke(currentHealth); // Trigger UI update on initialization
     }
