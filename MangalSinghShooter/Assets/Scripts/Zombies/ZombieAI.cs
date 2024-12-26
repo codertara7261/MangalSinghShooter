@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class ZombieAI : MonoBehaviour
 {
-    // public static event Action OnZombieDie;
+    [SerializeField] private AudioClip[] zombieDieSfxArray;
 
     [SerializeField] private float initialZombieSpeed = 2f;
     [SerializeField] private float speedIncreaseRate = 0.1f;
-    [SerializeField] private AudioClip[] zombieHitSfxArray;
 
     private float currentZombieSpeed;
 

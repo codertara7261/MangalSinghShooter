@@ -84,7 +84,6 @@ public class SoundManager : MonoBehaviour
     }
 
     public void PlayZombieDieSound() {
-        Debug.Log("zombie die sound");
         if(zombieHitSfxArray != null) {
             int randomIndex = Random.Range(0, 2);
             zombieAudioSource.PlayOneShot(zombieHitSfxArray[randomIndex], 0.5f);
@@ -119,7 +118,12 @@ public class SoundManager : MonoBehaviour
     }
 
     private void AssignZombieAudioSource() {
-        zombieAudioSource = GameObject.FindWithTag(ZOMBIE).AddComponent<AudioSource>();
+        // zombieAudioSource = GameObject.FindWithTag(ZOMBIE).AddComponent<AudioSource>();
+        zombieAudioSource = gameObject.AddComponent<AudioSource>();
+        zombieAudioSource.loop = false;
+        zombieAudioSource.playOnAwake = false;
+        zombieAudioSource.priority = 130;
+
     }
 
     private void AssignPlayerAudioSource(GameObject player) {

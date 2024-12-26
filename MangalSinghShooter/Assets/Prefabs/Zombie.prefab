@@ -174,7 +174,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.22, y: 0}
+  m_Offset: {x: 0.25, y: 0}
   serializedVersion: 2
   m_Radius: 0.9
 --- !u!50 &8274448316726709776
@@ -216,9 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db08e5cbc66c9b047a2b00f2f823d88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombieDieSfxArray: []
   initialZombieSpeed: 2
   speedIncreaseRate: 0.1
-  zombieHitSfxArray: []
 --- !u!82 &6147096214786589
 AudioSource:
   m_ObjectHideFlags: 0
